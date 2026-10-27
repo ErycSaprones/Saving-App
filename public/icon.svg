@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f1c3f" />
+      <stop offset="100%" stop-color="#1e3c72" />
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f6d365" />
+      <stop offset="100%" stop-color="#d4af37" />
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="110" fill="url(#grad)" />
+  <circle cx="256" cy="256" r="180" fill="none" stroke="url(#goldGrad)" stroke-width="14" stroke-dasharray="12 8" opacity="0.6" />
+  <g transform="translate(136, 126)">
+    <!-- Shield / Vault Symbol -->
+    <path d="M120 0 L230 40 L230 140 C230 215 120 270 120 270 C120 270 10 215 10 140 L10 40 Z" fill="none" stroke="url(#goldGrad)" stroke-width="16" stroke-linejoin="round"/>
+    <path d="M120 40 L195 70 L195 135 C195 185 120 225 120 225 C120 225 45 185 45 135 L45 70 Z" fill="url(#goldGrad)" opacity="0.15"/>
+    <!-- Keyhole & Growth Tree / Coin -->
+    <circle cx="120" cy="115" r="26" fill="url(#goldGrad)"/>
+    <path d="M110 135 L130 135 L136 185 L104 185 Z" fill="url(#goldGrad)"/>
+  </g>
+</svg>

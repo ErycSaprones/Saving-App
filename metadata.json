@@ -1,0 +1,6 @@
+{
+  "name": "Saprones Family Savings - Mobile App & APK",
+  "description": "The official mobile app and Android APK for Saprones Family Savings. Empowering family wealth, cooperative savings, development funds, and secure financial growth.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

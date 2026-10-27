@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saprones Family Savings - Login</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/images/logo.png">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Typed.js -->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --navy: #0f1c3f;
+            --navy2: #1e3c72;
+            --gold: #d4af37;
+            --gold2: #b8962e;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        .login-container {
+            width: 900px;
+            max-width: 100%;
+            height: 550px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            display: flex;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+        }
+
+        /* Close Button */
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 35px;
+            height: 35px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+        .close-btn:hover {
+            background: #ff4757;
+            color: white;
+            transform: rotate(90deg) scale(1.1);
+        }
+
+        /* Left Side */
+        .left-side {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 40px;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.1);
+        }
+        .left-side h1 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 2.3rem;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+        .typed-text {
+            font-size: 1.1rem;
+            color: #a3c4ff;
+            min-height: 50px;
+            font-weight: 300;
+        }
+        .left-side p.mt-3 {
+            color: rgba(255, 255, 255, 0.6) !important;
+            font-size: 0.9rem;
+        }
+
+        /* Right Side */
+        .right-side {
+            flex: 1;
+            background: #fff;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-top-left-radius: 50px;
+            border-bottom-left-radius: 50px;
+            box-shadow: -10px 0 20px rgba(0,0,0,0.1);
+        }
+
+        .form-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--navy);
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+        }
+
+        /* Line Input */
+        .input-group-custom {
+            position: relative;
+            margin-bottom: 32px;
+        }
+        .input-group-custom i {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--navy2);
+            font-size: 1.1rem;
+            transition: color 0.3s;
+            z-index: 2;
+        }
+        .input-group-custom input {
+            width: 100%;
+            border: none;
+            border-bottom: 2px solid #e0e0e0;
+            padding: 10px 10px 10px 30px;
+            font-size: 1rem;
+            color: var(--navy);
+            background: transparent;
+            outline: none;
+            transition: border-color 0.3s;
+            font-family: 'Poppins', sans-serif;
+        }
+        .input-group-custom input:focus {
+            border-bottom-color: var(--gold);
+        }
+        .input-group-custom input:focus ~ i {
+            color: var(--gold);
+        }
+        .input-group-custom label {
+            position: absolute;
+            left: 30px;
+            top: 10px;
+            color: #999;
+            font-size: 1rem;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+        .input-group-custom input:focus ~ label,
+        .input-group-custom input:not(:placeholder-shown) ~ label {
+            top: -20px;
+            left: 0;
+            font-size: 0.72rem;
+            color: var(--gold);
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .btn-login {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
+            border: none;
+            color: white;
+            padding: 13px;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.35s;
+            margin-top: 10px;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            box-shadow: 0 10px 25px rgba(30, 60, 114, 0.25);
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-login::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212,175,55,0.4), transparent);
+            transition: left 0.7s ease;
+        }
+        .btn-login:hover::before { left: 100%; }
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(30, 60, 114, 0.4);
+            color: white;
+        }
+        .btn-login:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .links-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            font-size: 0.85rem;
+        }
+        .links-row a {
+            color: var(--navy2);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .links-row a:hover { color: var(--gold); }
+
+        .form-check-input:checked {
+            background-color: var(--gold);
+            border-color: var(--gold);
+        }
+        .form-check-input:focus {
+            box-shadow: 0 0 0 0.2rem rgba(212, 175, 55, 0.25);
+            border-color: var(--gold);
+        }
+
+        /* Fade in */
+        .fade-in-right {
+            animation: fadeInRight 1s ease-in-out;
+        }
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .login-container {
+                flex-direction: column;
+                height: auto;
+                width: 100%;
+            }
+            .left-side {
+                padding: 35px 25px;
+                text-align: center;
+            }
+            .left-side h1 { font-size: 1.8rem; }
+            .typed-text { font-size: 1rem; }
+            .right-side {
+                border-radius: 0;
+                padding: 35px 25px;
+            }
+            .close-btn {
+                background: rgba(0, 0, 0, 0.1);
+            }
+            .form-title { font-size: 1.5rem; margin-bottom: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container fade-in-right">
+        <!-- Animated Close Button -->
+        <a href="index.php" class="close-btn" title="Close">
+            <i class="fas fa-times"></i>
+        </a>
+
+        <!-- Left Side: Typing Animation -->
+        <div class="left-side">
+            <h1>Welcome to Saprones Family Savings</h1>
+            <div class="typed-text">
+                <span id="typed"></span>
+            </div>
+            <p class="mt-3">Secure your family's future, together.</p>
+        </div>
+
+        <!-- Right Side: Login Form -->
+        <div class="right-side">
+            <h3 class="form-title">Member Login</h3>
+            <form id="loginForm" autocomplete="on">
+                <!-- Username/Email/Phone Input -->
+                <div class="input-group-custom">
+                    <input type="text" id="username" name="username" placeholder=" "
+                           value="" required>
+                    <i class="fas fa-user"></i>
+                    <label for="username">Username / Email / Phone</label>
+                </div>
+
+                <!-- Password Input -->
+                <div class="input-group-custom">
+                    <input type="password" id="password" name="password" placeholder=" " required>
+                    <i class="fas fa-lock"></i>
+                    <label for="password">Password</label>
+                </div>
+
+                <div class="links-row">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="rememberMe" >
+                        <label class="form-check-label" for="rememberMe">Remember me</label>
+                    </div>
+                    <a href="forgot_password.php">Forgot Password?</a>
+                </div>
+
+                <button type="submit" class="btn btn-login w-100">
+                    <i class="fas fa-sign-in-alt me-2"></i> LOGIN
+                </button>
+            </form>
+
+            <div class="text-center mt-4">
+                <small style="color:#8a94a6;">
+                    Not a member?
+                    <a href="contact.php" style="color: var(--navy2); font-weight: 600; text-decoration: none;">Contact Us</a>
+                </small>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        // ============== TYPING ANIMATION ==============
+        new Typed('#typed', {
+            strings: [
+                "Welcome Back!",
+                "Manage your savings.",
+                "Track family contributions.",
+                "Achieve your financial goals."
+            ],
+            typeSpeed: 50,
+            backSpeed: 30,
+            loop: true
+        });
+
+        // ============== AJAX LOGIN ==============
+        $(document).ready(function() {
+            $('#loginForm').on('submit', function(e) {
+                e.preventDefault();
+
+                var username = $('#username').val().trim();
+                var password = $('#password').val();
+                var remember = $('#rememberMe').is(':checked') ? 1 : 0;
+
+                if (username === '' || password === '') {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Oops...',
+                        text: 'Please fill in all fields!',
+                        confirmButtonColor: '#d4af37'
+                    });
+                    return;
+                }
+
+                // Disable button during request
+                var $btn = $('.btn-login');
+                var originalHTML = $btn.html();
+                $btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin me-2"></i> Logging in...');
+
+                $.ajax({
+                    url: 'login.php',
+                    method: 'POST',
+                    data: { username: username, password: password, remember: remember },
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response.status === 'success') {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Welcome!',
+                                text: response.message,
+                                timer: 1800,
+                                showConfirmButton: false,
+                                allowOutsideClick: false
+                            }).then(() => {
+                                window.location.href = 'dashboard.php';
+                            });
+                        } else {
+                            $btn.prop('disabled', false).html(originalHTML);
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Login Failed',
+                                text: response.message,
+                                confirmButtonColor: '#d4af37'
+                            });
+                        }
+                    },
+                    error: function() {
+                        $btn.prop('disabled', false).html(originalHTML);
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'System Error',
+                            text: 'Something went wrong. Please try again later.',
+                            confirmButtonColor: '#d4af37'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
